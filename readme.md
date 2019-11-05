@@ -3,21 +3,21 @@
 </p>
 
 <p align="center">
-<a href="https://packagist.org/packages/devuelving/devuelving-core"><img src="https://poser.pugx.org/devuelving/devuelving-core/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/devuelving/devuelving-core"><img src="https://poser.pugx.org/devuelving/devuelving-core/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/devuelving/devuelving-core"><img src="https://poser.pugx.org/devuelving/devuelving-core/license.svg" alt="License"></a>
+<a href="https://packagist.org/packages/shoppingbox/shoppingbox-core"><img src="https://poser.pugx.org/shoppingbox/shoppingbox-core/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/shoppingbox/shoppingbox-core"><img src="https://poser.pugx.org/shoppingbox/shoppingbox-core/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/shoppingbox/shoppingbox-core"><img src="https://poser.pugx.org/shoppingbox/shoppingbox-core/license.svg" alt="License"></a>
 </p>
 
-<h1 align="center">devuelving core</h1>
+<h1 align="center">shoppingbox core</h1>
 
 ## Installation
 
-1) Add devuelving/devuelving-core to your project:
+1) Add shoppingbox/shoppingbox-core to your project:
 
 ```bash
-composer require devuelving/devuelving-core
+composer require shoppingbox/shoppingbox-core
 ```
 
 ## License & Copyright
 
-MIT, (c) 2018 devuelving.com
+MIT, (c) 2019 shoppingbox.es
