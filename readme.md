@@ -12,10 +12,10 @@
 
 ## Installation
 
-1) Add shoppingbox/shoppingbox-core to your project:
+1) Add dttecnologia/shoppingbox-core to your project:
 
 ```bash
-composer require shoppingbox/shoppingbox-core
+composer require dttecnologia/shoppingbox-core
 ```
 
 ## License & Copyright
