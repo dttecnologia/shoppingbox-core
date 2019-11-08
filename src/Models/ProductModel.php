@@ -4,8 +4,8 @@ namespace shoppingbox\core;
 
 use Carbon\Carbon;
 use shoppingbox\core\TaxModel;
-use shoppingbox\core\BrandModel;
 use shoppingbox\core\ProductCustom;
+use shoppingbox\core\BrandModel;
 use shoppingbox\core\ProviderModel;
 use Illuminate\Support\Facades\DB;
 use shoppingbox\core\FranchiseModel;

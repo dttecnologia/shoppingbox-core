@@ -5,7 +5,6 @@ namespace shoppingbox\core;
 use Illuminate\Database\Eloquent\Model;
 use shoppingbox\core\FranchiseLayoutModel;
 
-
 class FranchiseLayoutHistoryModel extends Model
 {
     /**
