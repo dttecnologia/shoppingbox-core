@@ -4,7 +4,7 @@ namespace shoppingbox\core;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use devuelving\core\FranchiseLayoutHistoryModel;
+use shoppingbox\core\FranchiseLayoutHistoryModel;
 
 class FranchiseLayoutModel extends Model
 {

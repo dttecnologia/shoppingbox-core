@@ -2,7 +2,6 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\ProductCustomModel;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductCustomModel extends Model

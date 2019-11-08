@@ -3,11 +3,10 @@
 namespace shoppingbox\core;
 
 use Carbon\Carbon;
-use devuelving\core\CustomerModel;
-use devuelving\core\FranchiseModel;
+use shoppingbox\core\CustomerModel;
 use Illuminate\Database\Eloquent\Model;
-use devuelving\core\CallAppointmentModel;
-use devuelving\core\FranchiseServicesModel;
+use shoppingbox\core\CallAppointmentModel;
+use shoppingbox\core\FranchiseServicesModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FranchiseModel extends Model

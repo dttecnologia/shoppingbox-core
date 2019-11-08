@@ -3,8 +3,8 @@
 namespace shoppingbox\core;
 
 use Illuminate\Database\Eloquent\Model;
-use devuelving\core\FranchiseLayoutModel;
-use devuelving\core\FranchiseLayoutHistoryModel;
+use shoppingbox\core\FranchiseLayoutModel;
+
 
 class FranchiseLayoutHistoryModel extends Model
 {

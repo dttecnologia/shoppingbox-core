@@ -3,15 +3,15 @@
 namespace shoppingbox\core;
 
 use App\Franchise;
-use devuelving\core\TaxModel;
-use devuelving\core\ProductModel;
-use devuelving\core\MyCountryModel;
-use devuelving\core\MyOrderDetailModel;
+use shoppingbox\core\TaxModel;
+use shoppingbox\core\ProductModel;
+use shoppingbox\core\MyCountryModel;
+use shoppingbox\core\MyOrderDetailModel;
 use Illuminate\Database\Eloquent\Model;
-use devuelving\core\MyShippingFeesModel;
-use devuelving\core\FranchiseCustomModel;
-use devuelving\core\MyOrderDiscountModel;
-use devuelving\core\MyPaymentMethodModel;
+use shoppingbox\core\MyShippingFeesModel;
+use shoppingbox\core\FranchiseCustomModel;
+use shoppingbox\core\MyOrderDiscountModel;
+use shoppingbox\core\MyPaymentMethodModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MyOrderModel extends Model

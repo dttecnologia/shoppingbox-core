@@ -2,8 +2,8 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\ProductModel;
-use devuelving\core\ProviderModel;
+use shoppingbox\core\ProductModel;
+use shoppingbox\core\ProviderModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -54,15 +54,17 @@ class ProductProviderModel extends Model
 
         self::created(function ($productProvider) {
             $product = ProductModel::find($productProvider->product);
+            $variation = ProductVariationModel::find($productProvider->variation)->variation;
             if (!$product->franchise){
-                $product->updatePrice();
+                $product->updatePrice($variation);
             }
         });
 
         self::updated(function ($productProvider) {
             $product = ProductModel::find($productProvider->product);
+            $variation = ProductVariationModel::find($productProvider->variation)->variation;
             if (!$product->franchise){
-                $product->updatePrice();
+                $product->updatePrice($variation);
             }
         });
     }

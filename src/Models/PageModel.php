@@ -2,7 +2,7 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\FranchiseModel;
+use shoppingbox\core\FranchiseModel;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 

@@ -2,14 +2,14 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\TaxModel;
-use devuelving\core\RegionModel;
-use devuelving\core\CountryModel;
-use devuelving\core\IncidentsModel;
-use devuelving\core\OrderDetailModel;
-use devuelving\core\ShippingFeeModel;
-use devuelving\core\OrderDiscountModel;
-use devuelving\core\PaymentMethodModel;
+use shoppingbox\core\TaxModel;
+use shoppingbox\core\RegionModel;
+use shoppingbox\core\CountryModel;
+use shoppingbox\core\IncidentsModel;
+use shoppingbox\core\OrderDetailModel;
+use shoppingbox\core\ShippingFeeModel;
+use shoppingbox\core\OrderDiscountModel;
+use shoppingbox\core\PaymentMethodModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

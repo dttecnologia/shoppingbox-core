@@ -2,8 +2,8 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\ProductModel;
-use devuelving\core\CategoryModel;
+use shoppingbox\core\ProductModel;
+use shoppingbox\core\CategoryModel;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductCategoryModel extends Model

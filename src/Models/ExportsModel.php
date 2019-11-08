@@ -2,8 +2,8 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\TaxModel;
-use devuelving\core\CategoryModel;
+use shoppingbox\core\TaxModel;
+use shoppingbox\core\CategoryModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

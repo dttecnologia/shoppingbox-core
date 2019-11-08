@@ -2,7 +2,7 @@
 
 namespace shoppingbox\core;
 
-use devuelving\core\ProductModel;
+use shoppingbox\core\ProductModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
