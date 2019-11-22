@@ -1164,4 +1164,17 @@ class ProductModel extends Model
         $product = ProductModel::find($this->id);
         return view('modules.catalog.product', compact('product'));
     }
+
+
+    public function hasPhysicalStock(){
+        return $this->stock_type == config('settings.stock_types.fisico');
+    }
+
+    public function hasDropshippingStock(){
+        return $this->stock_type == config('settings.stock_types.dropshipping');
+    }
+
+    public function hasLiquidationStock(){
+        return $this->stock_type == config('settings.stock_types.liquidacion');
+    }
 }
