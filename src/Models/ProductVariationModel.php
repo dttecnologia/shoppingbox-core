@@ -65,4 +65,17 @@ class ProductVariationModel extends Model
     {
         return $this->product()->first()->name . ' (' . $this->name . ')';
     }
+
+    
+    public function encodeVariations($variations)
+    {
+        $variationsArray = explode(",", $variations); // [key:value, key:value]
+        foreach ($variationsArray as $variation) {
+            $pos = strpos($variation, ":");
+            $key = trim(substr($variation, 0, $pos));
+            $value = trim(substr($variation, $pos + 1));
+            $result[$key] = $value;
+        }
+        $this->variation = json_encode($result);
+    }
 }

@@ -1177,4 +1177,59 @@ class ProductModel extends Model
     public function hasLiquidationStock(){
         return $this->stock_type == config('settings.stock_types.liquidacion');
     }
+
+    public function buildVariations()
+    {
+        // genera JSON per a Product
+        $productVariations = ProductVariationModel::where('product', $this->id)->get();
+        $resultArray = array();
+        foreach ($productVariations as $productVariations) {
+            foreach ($productVariations->variation as $key => $variation) {
+                if (!array_key_exists($key, $resultArray)) {
+                    $resultArray[$key][0] = $variation;
+                } else {
+                    if (!in_array($variation, $resultArray[$key])) {
+                        $resultArray[$key][] = $variation;
+                    }
+                }
+            }
+            // info(print_r($variation, true));
+        }
+        $this->variations = json_encode($resultArray);
+    }
+
+
+
+    /**
+     * Actualiza los precios del producto en la tabla de productos (NO ES FA SERVIR)
+     *
+     * @since 3.0.0
+     * @author Eduard <eduardn@devuelving.com>
+     * @return void
+     */
+    public function updateMyShopCostPrice($variation = null)
+    {
+        if ($this->franchise !== null) {
+            // Obtenemos el product provider
+            $productProvider = $this->getProductProvider(false, $variation);
+            // Obtenemos el proveedor del producto
+            $provider = $productProvider->getProvider(false, $variation);
+            // Obtenemos el precio de coste y le sumamos el margen de beneficio del proveedor
+            $costPrice = $productProvider->cost_price + ($productProvider->cost_price * ($provider->profit_margin / 100));
+            if ($variation == null) {
+                // Actualitzem els preus de totes les variacions menys les que ja tinguin un preu especific.
+                $productVariations = ProductVariationModel::where('product', $this->id)->get();
+                foreach ($productVariations as $productVariation) {
+                    $productProvider = ProductProviderModel::where('variation', $productVariation->id)->first();
+                    if (!$productProvider) {
+                        $productVariation->cost_price = $costPrice;
+                        $productVariation->save();
+                    }
+                    /* ProductVariationModel::where('product', $this->id)
+                    ->whereNotNull('variation')
+                    ->update(['cost_price' => $costPrice, 'price' => $default_price]); */
+                }
+            }
+        }
+    }
 }
