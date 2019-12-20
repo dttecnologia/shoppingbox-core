@@ -53,4 +53,15 @@ class MyOrderDetailModel extends Model
     {
         return ProductModel::find($this->product);
     }
+        /**
+     * Función para obtener los detalles de la variación
+     *
+     * @since 3.0.0
+     * @author Eduard Puigdemunt <eduard@devuelving.com>
+     * @return Product
+     */
+    public function getVariation()
+    {
+        return ProductVariationModel::find($this->variation);
+    }
 }
