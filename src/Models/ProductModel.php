@@ -461,7 +461,8 @@ class ProductModel extends Model
                 } else {
                     $productProvider->whereNull('variation');
                 }
-                $productProvider->orderBy('cost_price', $rule)->first();
+                $productProvider->orderBy('cost_price', $rule);
+                $productProvider = $productProvider->first();
             }
             return $productProvider;
         } catch (\Exception $e) {
