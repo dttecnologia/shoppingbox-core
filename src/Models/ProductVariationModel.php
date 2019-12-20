@@ -61,7 +61,7 @@ class ProductVariationModel extends Model
      * @param  string  $value
      * @return string
      */
-    public function getProductFullNameAttribute($value)
+    public function getProductFullNameAttribute()
     {
         return $this->product()->first()->name . ' (' . $this->name . ')';
     }

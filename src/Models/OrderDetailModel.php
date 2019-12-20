@@ -65,4 +65,23 @@ class OrderDetailModel extends Model
     {
         return ProductVariationModel::find($this->variation);
     }
+   
+     /**
+     * Get variations full name (product + variation) or product name if not variation.
+     * 
+     * @author Eduard Puigdemunt <eduard@devuelving.com>
+     * @param  string  $value
+     * @return string
+     */
+    public function getProductFullNameAttribute()
+    {
+        $productName = $this->getProduct()->name;
+        if ($this->variation){
+            return $productName . ' (' . $this->getVariation()->name . ')';
+        }
+        else{
+            return $productName;
+        }
+    }
+
 }
