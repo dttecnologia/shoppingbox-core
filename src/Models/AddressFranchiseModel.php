@@ -4,7 +4,7 @@ namespace shoppingbox\core;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AddressFranchiseModel extends Model
+class FranchiseAddressModel extends Model
 {
     /**
      * The table associated with the model.
