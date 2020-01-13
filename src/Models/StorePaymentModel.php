@@ -27,7 +27,7 @@ class StorePaymentModel extends Model
      * @var array
      */
     protected $fillable = [
-        'orders'
+        'orders', 'amount'
     ];
 
     /**
