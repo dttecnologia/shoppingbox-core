@@ -98,7 +98,10 @@ class OrderModel extends Model
                 }
                 break;
             case 2:
-                return __("Pagado");
+                if ($this->pickup == 1 ) {
+                    return __("Pendiente de confirmar");
+                } else {
+                    return __("Pagado");                }
                 break;
             case 3:
                 return __("En preparación");
@@ -246,13 +249,12 @@ class OrderModel extends Model
                 $country = CountryModel::where('code', $this->address_country)->first();
                 $shippingFee = ShippingFeeModel::find($country->shipping_fee);
             }
-            if ($excludeMeat){
-            // $total = $this->getShippingPrice($shippingFee, $this->getProductWeight(true));
-            $total = $this->getShippingPrice($shippingFee, $this->getShippingWeight(true));
-            }
-            else{
-            // $total = $this->getShippingPrice($shippingFee, $this->weight);
-            $total = $this->getShippingPrice($shippingFee, $this->getShippingWeight());
+            if ($excludeMeat) {
+                // $total = $this->getShippingPrice($shippingFee, $this->getProductWeight(true));
+                $total = $this->getShippingPrice($shippingFee, $this->getShippingWeight(true));
+            } else {
+                // $total = $this->getShippingPrice($shippingFee, $this->weight);
+                $total = $this->getShippingPrice($shippingFee, $this->getShippingWeight());
             }
             if ($this->hasDropshipping()) {
                 $total = $total + $this->getDropshippingPrice();
@@ -272,19 +274,23 @@ class OrderModel extends Model
      */
     public function getFreeShipping()
     {
-        if(session('priceCost') == 1){
+        if (session('priceCost') == 1) {
             return false;
         }
         $product_total = $this->totalAmount();
         $free_shippings = FranchiseCustomModel::where('franchise', $this->franchise)->where('var', 'free_shipping')->first();
-        if ($free_shippings){
+        if ($free_shippings) {
             $total = false;
-			$last_amount = 0;
+            $last_amount = 0;
             $free_shipping_array = json_decode($free_shippings->value);
             foreach ($free_shipping_array as $free_shipping) {
-                if($product_total >= $free_shipping->amount && $free_shipping->amount > $last_amount) {
+                if ($product_total >= $free_shipping->amount && $free_shipping->amount > $last_amount) {
                     $last_amount = $free_shipping->amount;
-                    $total = number_format($free_shipping->discount, 2, '.', '');
+                    if ($this->pickup) {
+                        $total = number_format($free_shipping->discount_pickup, 2, '.', '');
+                    } else {
+                        $total = number_format($free_shipping->discount, 2, '.', '');
+                    }
                 }
             }
             return $total;
@@ -523,7 +529,7 @@ class OrderModel extends Model
         }
         return false;
     }
-    
+
     /**
      * Gets the weight from de order product detail
      *
@@ -542,7 +548,7 @@ class OrderModel extends Model
         return $weight;
     }
 
-     /**
+    /**
      * Rutina per obtenir el pes o el volum (el mes gran)
      *
      * @param bool $excludeMeat
@@ -559,9 +565,9 @@ class OrderModel extends Model
                 $volume = $volume + $product->getProduct()->volume * $product->units;
             }
         }
-        if($weight > $volume) {
+        if ($weight > $volume) {
             return $weight;
-        }else {
+        } else {
             return $volume;
         }
     }
