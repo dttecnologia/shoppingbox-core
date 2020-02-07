@@ -119,7 +119,7 @@ class ProductModel extends Model
      */
     public function productVariation()
     {
-        return $this->hasMany('devuelving\core\ProductVariationModel', 'product', 'id');
+        return $this->hasMany('shoppingbox\core\ProductVariationModel', 'product', 'id');
     }
 
     /**
