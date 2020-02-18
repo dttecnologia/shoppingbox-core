@@ -98,11 +98,19 @@ class OrderModel extends Model
                 }
                 break;
             case 2:
-                if ($this->pickup == 1 ) {
-                    return __("Pendiente de confirmar");
-                } else {
-                    return __("Pagado");                }
-                break;
+                switch ($this->pickup) {
+                    case 1:
+                        return __("Pendiente de confirmar");
+                        break;
+
+                    case 2:
+                        return __("Pendiente de recoger");
+                        break;
+
+                    default:
+                        return __("Pagado");
+                        break;
+                }
             case 3:
                 return __("En preparación");
                 break;
