@@ -38,7 +38,7 @@ class MyOrderModel extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'code', 'customer', 'franchise', 'status', 'volume', 'weight', 'boxes', 'amount', 'is_cost_price', 'franchise_earnings', 'added_taxes', 'payment_method', 'payment_method_cost', 'payment_method_data', 'shipping_costs', 'shipping_costs_customer', 'shipping_costs_franchise', 'delivery_term', 'customer_nif', 'customer_name', 'customer_email', 'customer_phone', 'address_street', 'address_number', 'address_floor', 'address_door', 'address_town', 'address_province', 'address_postal_code', 'address_country', 'comments',
+        'id', 'code', 'customer', 'franchise', 'status', 'volume', 'weight', 'boxes', 'amount', 'is_cost_price', 'franchise_earnings', 'added_taxes', 'payment_method', 'payment_method_cost', 'payment_method_data', 'pickup', 'shipping_costs', 'shipping_costs_customer', 'shipping_costs_franchise', 'delivery_term', 'customer_nif', 'customer_name', 'customer_email', 'customer_phone', 'address_street', 'address_number', 'address_floor', 'address_door', 'address_town', 'address_province', 'address_postal_code', 'address_country', 'comments',
     ];
 
     /**
@@ -227,7 +227,12 @@ class MyOrderModel extends Model
         if (!empty($this->address_country)) {
             $total = 0;
             $country = MyCountryModel::where('franchise', Franchise::get('id'))->where('code', $this->address_country)->first();
-            $shippingFee = MyShippingFeesModel::find($country->shipping_fee);
+            if (is_null($this->pickup)){
+                $shippingFee = MyShippingFeesModel::find($country->shipping_fee);
+            }
+            else{
+                $shippingFee = MyShippingFeesModel::find($country->shipping_fee_pickup);
+            }
             $total = $this->getShippingPrice($shippingFee, $this->weight);
             if ($this->hasDropshipping()) {
                 $total = $total + $this->getDropshippingPrice();

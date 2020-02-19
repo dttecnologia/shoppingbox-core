@@ -47,7 +47,7 @@ class ExportsModel extends Model
      * Función para obtener los filtros
      *
      * @since 3.0.0
-     * @author David Cortés <david@devuelving.com>
+     * @author 
      * @return void
      */
     public function getFilters()

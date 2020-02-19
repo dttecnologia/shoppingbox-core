@@ -26,7 +26,7 @@ class MyCountryModel extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'code', 'name', 'shipping_fee', 'delivery_term', 'franchise',
+        'id', 'code', 'name', 'shipping_fee', 'shipping_fee_pickup', 'delivery_term', 'preparation_time', 'franchise',
     ];
 
     /**

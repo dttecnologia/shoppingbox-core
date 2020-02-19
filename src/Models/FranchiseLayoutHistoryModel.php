@@ -43,7 +43,7 @@ class FranchiseLayoutHistoryModel extends Model
      * Crea la copia de seguridad del layout
      *
      * @since 3.0.0
-     * @author David Cortés <david@devuelving.com>
+     * @author 
      * @param FranchiseLayoutModel $layout
      * @param User $user
      * @return void

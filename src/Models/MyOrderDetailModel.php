@@ -46,7 +46,7 @@ class MyOrderDetailModel extends Model
      * Función para obtener los detalles de un producto
      *
      * @since 3.0.0
-     * @author David Cortés <david@devuelving.com>
+     * @author 
      * @return Product
      */
     public function getProduct()

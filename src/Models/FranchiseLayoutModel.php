@@ -78,7 +78,7 @@ class FranchiseLayoutModel extends Model
      * Decodifica el contenido del layout en json
      *
      * @since 3.0.0
-     * @author David Cortés <david@devuelving.com>
+     * @author 
      * @return void
      */
     public function getContent()
