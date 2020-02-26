@@ -93,7 +93,11 @@ class MyOrderModel extends Model
                 return __("Preparado");
                 break;
             case 5:
-                return __("Enviado");
+                if ($this->pickup == null) {
+                    return __("Enviado");
+                } else {
+                    return __("Recogido");
+                }
                 break;
             case 6:
                 return __("En transito");
