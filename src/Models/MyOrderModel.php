@@ -227,18 +227,21 @@ class MyOrderModel extends Model
         if (!empty($this->address_country)) {
             $total = 0;
             $country = MyCountryModel::where('franchise', Franchise::get('id'))->where('code', $this->address_country)->first();
-            if (is_null($this->pickup)){
-                $shippingFee = MyShippingFeesModel::find($country->shipping_fee);
+            if ($country) {
+                if (is_null($this->pickup)) {
+                    $shippingFee = MyShippingFeesModel::find($country->shipping_fee);
+                } else {
+                    $shippingFee = MyShippingFeesModel::find($country->shipping_fee_pickup);
+                }
+                $total = $this->getShippingPrice($shippingFee, $this->weight);
+                if ($this->hasDropshipping()) {
+                    $total = $total + $this->getDropshippingPrice();
+                }
+                $total += $total * (TaxModel::find(1)->value / 100);
+                return number_format($total, 2, '.', '');
+            } else {
+                info('País no definido en MyCountryModel');
             }
-            else{
-                $shippingFee = MyShippingFeesModel::find($country->shipping_fee_pickup);
-            }
-            $total = $this->getShippingPrice($shippingFee, $this->weight);
-            if ($this->hasDropshipping()) {
-                $total = $total + $this->getDropshippingPrice();
-            }
-            $total += $total * (TaxModel::find(1)->value / 100);
-            return number_format($total, 2, '.', '');
         }
         return null;
     }
@@ -256,12 +259,12 @@ class MyOrderModel extends Model
         return 0;
         $product_total = $this->totalAmount();
         $free_shippings = FranchiseCustomModel::where('franchise', $this->franchise)->where('var', 'free_shipping')->first();
-        if ($free_shippings){
+        if ($free_shippings) {
             $total = false;
-			$last_amount = 0;
+            $last_amount = 0;
             $free_shipping_array = json_decode($free_shippings->value);
             foreach ($free_shipping_array as $free_shipping) {
-                if($product_total >= $free_shipping->amount && $free_shipping->amount > $last_amount) {
+                if ($product_total >= $free_shipping->amount && $free_shipping->amount > $last_amount) {
                     $last_amount = $free_shipping->amount;
                     $total = number_format($free_shipping->discount, 2, '.', '');
                 }
