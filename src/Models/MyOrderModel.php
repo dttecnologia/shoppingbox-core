@@ -77,11 +77,7 @@ class MyOrderModel extends Model
                 return __("Sin finalizar");
                 break;
             case 1:
-                if ($this->payment_method == 3 || $this->payment_method == 4) {
-                    return __("En gestión");
-                } else {
-                    return __("Pendiente de pago");
-                }
+                return __("Pendiente de pago");
                 break;
             case 2:
                 return __("Pagado");

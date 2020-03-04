@@ -103,10 +103,6 @@ class OrderModel extends Model
                         return __("Pendiente de confirmar");
                         break;
 
-                    case 2:
-                        return __("Pendiente de recoger");
-                        break;
-
                     default:
                         return __("Pagado");
                         break;
