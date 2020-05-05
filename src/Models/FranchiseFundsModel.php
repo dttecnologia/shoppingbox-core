@@ -4,6 +4,20 @@ namespace shoppingbox\core;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * STATUS:
+ * 1- No confirmado
+ * 2- Confirmado
+ * 10- Cancelado
+ */
+
+ /**
+ * TYPE:
+ * 1- Cash input (+)
+ * 2- Cash outflow (-)
+ * 3- Reinbursement (+)
+ */
+
 class FranchiseFundsModel extends Model
 {
     /**

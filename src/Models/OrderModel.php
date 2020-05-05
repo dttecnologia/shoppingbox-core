@@ -575,4 +575,26 @@ class OrderModel extends Model
             return $volume;
         }
     }
+
+    /**
+     * Calculates the extra cost from provider
+     *
+     * @return float
+     */
+    public function getShippingProviderCost()
+    {
+        $costs = [];
+        $order_lines = OrderDetailModel::where('order', $this->id)->get();
+        foreach ($order_lines as $order_line) {
+            $product = ProductModel::find($order_line->product);
+            $provider = $product->getProvider();
+            if ($provider->shipping_extra_cost > 0) {
+                if (!array_key_exists($provider->id, $costs)) {
+                    $costs[$provider->id] = $provider->shipping_extra_cost;
+                }
+            }
+        }
+        info($costs);
+        return number_format(array_sum($costs), 2, '.', '');
+    }
 }
