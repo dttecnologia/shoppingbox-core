@@ -103,6 +103,10 @@ class OrderModel extends Model
                         return __("Pendiente de confirmar");
                         break;
 
+                    case 2:
+                        return __("Pendiente de recoger");
+                        break;
+
                     default:
                         return __("Pagado");
                         break;
@@ -231,7 +235,14 @@ class OrderModel extends Model
             $voucher = OrderDiscountModel::where('order', $this->id)->first();
             $discounts = $voucher->discount_value;
         }
-        $earnings = $earnings - $this->shipping_costs_franchise - $discounts;
+        // Si es recogida en tienda no es te en compte el cost dels ports del franquiciat perque aquest cost ja el pagarà
+        // al confirmar la comanda a Devuelving
+        if ($this->pickup >= 1){
+            $earnings = $earnings - $discounts;
+        }
+        else{
+            $earnings = $earnings - $this->shipping_costs_franchise - $discounts;
+        }
         return number_format($earnings, 2, '.', '');
     }
 
