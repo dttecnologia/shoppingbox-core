@@ -100,11 +100,7 @@ class OrderModel extends Model
             case 2:
                 switch ($this->pickup) {
                     case 1:
-                        return __("Pendiente de confirmar");
-                        break;
-
-                    case 2:
-                        return __("Pendiente de recoger");
+                        return __("Pendiente de pago (portes)");
                         break;
 
                     default:
