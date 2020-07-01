@@ -501,15 +501,16 @@ class ProductModel extends Model
      */
     public function getPublicPriceCost($tax = true, $variation = null)
     {
+        $discount = $this->getDiscountTarget();
         if ($variation == null) {
             $cost_price = $this->cost_price;
         } else {
             $cost_price = ProductVariationModel::find($variation)->cost_price;
         }
         if ($tax) {
-            return ($cost_price * $this->getDiscountTarget()) * ($this->getTax() + 1);
+            return ($cost_price * $discount) * ($this->getTax() + 1);
         } else {
-            return ($cost_price * $this->getDiscountTarget());
+            return ($cost_price * $discount);
         }
     }
 
