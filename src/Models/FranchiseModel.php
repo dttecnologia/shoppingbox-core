@@ -122,7 +122,7 @@ class FranchiseModel extends Model
             session()->put('franchise', $franchise);
             return $franchise;
         } else {
-            return FranchiseModel::where('code', str_replace('.tutienda.com.es', '', FranchiseModel::getDomain()))->first();
+            return FranchiseModel::where('code', str_replace('.tutienda.shoppingbox.es', '', FranchiseModel::getDomain()))->first();
         }
     }
 
