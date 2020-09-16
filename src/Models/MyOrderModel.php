@@ -40,6 +40,10 @@ class MyOrderModel extends Model
     protected $fillable = [
         'id', 'code', 'customer', 'franchise', 'status', 'volume', 'weight', 'boxes', 'amount', 'is_cost_price', 'franchise_earnings', 'added_taxes', 'payment_method', 'payment_method_cost', 'payment_method_data', 'pickup', 'shipping_costs', 'shipping_costs_customer', 'shipping_costs_franchise', 'delivery_term', 'customer_nif', 'customer_name', 'customer_email', 'customer_phone', 'address_street', 'address_number', 'address_floor', 'address_door', 'address_town', 'address_province', 'address_postal_code', 'address_country', 'comments',
     ];
+    
+    protected $casts = [
+        'pickup_data' => 'array',
+      ];
 
     /**
      * The attributes that should be hidden for arrays.
