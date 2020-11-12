@@ -100,9 +100,13 @@ class FranchiseModel extends Model
      */
     public static function getDomain()
     {
-        $domain = $_SERVER['HTTP_HOST'];
-        $domain = str_replace("www.", "", $domain);
-        return $domain;
+        if (array_key_exists('HTTP_HOST',  $_SERVER)) {
+            $domain = $_SERVER['HTTP_HOST'];
+            $domain = str_replace("www.", "", $domain);
+            return $domain;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -112,9 +116,11 @@ class FranchiseModel extends Model
      * @author 
      * @return void
      */
-    public static function getFranchise()
+    public static function getFranchise($franchise_id = null)
     {
-        if (!empty(auth()->user()->franchise)) {
+        if ($franchise_id) {
+            return FranchiseModel::find($franchise_id);
+        } else if (!empty(auth()->user()->franchise)) {
             return FranchiseModel::find(auth()->user()->franchise);
         } else if (session()->exists('franchise')){
             return session('franchise');
@@ -148,9 +154,9 @@ class FranchiseModel extends Model
      * @author 
      * @return void
      */
-    public static function get($data = null)
+    public static function get($data = null, $franchise_id = null)
     {
-        $id = FranchiseModel::getFranchise()->id;
+        $id = FranchiseModel::getFranchise($franchise_id)->id;
         if ($data) {
             try {
                 $franchise = FranchiseModel::find($id);
