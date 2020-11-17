@@ -2,17 +2,19 @@
 
 namespace shoppingbox\core;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PaymentModel extends Model
+class HeadquarterEarningModel extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'payments';
+    protected $table = 'headquarter_earnings';
 
     /**
      * Indicates if the model should be timestamped.
@@ -27,7 +29,7 @@ class PaymentModel extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'franchise', 'type', 'amount', 'status', 'payment_data'
+        'headquarter', 'amount', 'status', 'bill_type', 'bill_file',
     ];
 
     /**
@@ -36,18 +38,6 @@ class PaymentModel extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at',
+        'created_at', 'updated_at', 'deleted_at',
     ];
-
-     /**
-     * Get User agent
-     *
-     * @return User
-     */
-    public function getAgent()
-    {
-        $franchise = FranchiseModel::find($this->franchise);
-        $agent = User::find($franchise->agent);
-        return $agent;
-    }
 }

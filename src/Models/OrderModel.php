@@ -2,6 +2,7 @@
 
 namespace shoppingbox\core;
 
+use App\User;
 use shoppingbox\core\TaxModel;
 use shoppingbox\core\RegionModel;
 use shoppingbox\core\CountryModel;
@@ -10,6 +11,7 @@ use shoppingbox\core\OrderDetailModel;
 use shoppingbox\core\ShippingFeeModel;
 use shoppingbox\core\OrderDiscountModel;
 use shoppingbox\core\PaymentMethodModel;
+use shoppingbox\core\FranchiseModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -606,5 +608,17 @@ class OrderModel extends Model
         }
         info($costs);
         return number_format(array_sum($costs), 2, '.', '');
+    }
+
+     /**
+     * Get User agent
+     *
+     * @return User
+     */
+    public function getAgent()
+    {
+        $franchise = FranchiseModel::find($this->franchise);
+        $agent = User::find($franchise->agent);
+        return $agent;
     }
 }
