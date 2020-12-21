@@ -37,4 +37,12 @@ class AdminModel extends Model
     protected $hidden = [
         'password', 'remember_token', 'created_at', 'updated_at',
     ];
+
+     /**
+     * Get the Headquarter model associated with the user.
+     */
+    public function getHeadquarter()
+    {
+        return $this->belongsTo(HeadquarterModel::class, 'headquarter', 'id');
+    }
 }
