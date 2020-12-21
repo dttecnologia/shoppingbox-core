@@ -26,7 +26,7 @@ class HeadquarterModel extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'status', 'profit_susctiptions', 'profit_sales'
+        'name', 'type', 'status', 'profit_susctiptions', 'profit_sales', 'master_franchise'
     ];
 
     /**

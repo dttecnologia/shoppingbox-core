@@ -2,12 +2,14 @@
 
 namespace shoppingbox\core;
 
-use Carbon\Carbon;
-use shoppingbox\core\CustomerModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
+use App\User;
+use shoppingbox\core\CustomerModel;
+use shoppingbox\core\HeadquarterModel;
 use shoppingbox\core\CallAppointmentModel;
 use shoppingbox\core\FranchiseServicesModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FranchiseModel extends Model
 {
@@ -44,6 +46,15 @@ class FranchiseModel extends Model
     protected $hidden = [
         'id', 'created_at', 'updated_at', 'deleted_at',
     ];
+
+     /**
+     * Get the Headquarter that owns the user.
+     */
+    public function headquarter()
+    {
+        $agent = User::find($this->agent);
+        return  HeadquarterModel::find($agent->headquarter);
+    }
 
     /**
      * Método para obtener el logo de la franquicia
@@ -114,7 +125,7 @@ class FranchiseModel extends Model
      *
      * @since 3.0.0
      * @author 
-     * @return void
+     * @return FranchiseModel
      */
     public static function getFranchise($franchise_id = null)
     {
