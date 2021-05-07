@@ -167,17 +167,19 @@ class FranchiseModel extends Model
      */
     public static function get($data = null, $franchise_id = null)
     {
-        $id = FranchiseModel::getFranchise($franchise_id)->id;
+        if ($franchise_id == null){
+            $franchise_id = FranchiseModel::get('id');
+        }
         if ($data) {
             try {
-                $franchise = FranchiseModel::find($id);
+                $franchise = FranchiseModel::find($franchise_id);
                 return $franchise->$data;
             } catch (\Exception $e) {
                 // report($e);
                 return null;
             }
         }
-        return $id;
+        return $franchise_id;
     }
 
     /**

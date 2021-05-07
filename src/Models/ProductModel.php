@@ -66,7 +66,8 @@ class ProductModel extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'name',
+                'maxLength'          => 191
             ]
         ];
     }
@@ -906,7 +907,7 @@ class ProductModel extends Model
                 if ($margin < 1 && $options['price_type'] == 1) {
                     return [
                         'status' => false,
-                        'message' => 'El precio tiene que tener un beneficio minimo de un 1%',
+                        'message' => 'El precio ha de tener un beneficio minimo de un 1%',
                         'custom_price' => $this->checkCustomPrice(),
                         'type_custom_price' => $this->typeCustomPrice(),
                         'cost_price' => number_format($this->getPublicPriceCostWithoutIva(), 2, '.', ''),
